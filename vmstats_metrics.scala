@@ -13,7 +13,7 @@ val io = new ProcessIO(
 				val value = line(1).stripSuffix(".")
 				val data = "'{\"timestamp\":" + System.currentTimeMillis + ", \"data\": {\"" + key + "\": " + value + "}}'"
 				val url = "http://localhost:8080/db/usagestats/vm_stats"
-				val curlCmd = Seq("curl", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", data, url)
+				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", data, url)
 				println(curlCmd)
 				Process(curlCmd).run
 				})},
