@@ -1,5 +1,6 @@
 import scala.sys.process._
 import scala.io._
+import scala.util.parsing.json._
 
 val vmstatCmd = s"vm_stat"
 val io = new ProcessIO(
@@ -11,12 +12,9 @@ val io = new ProcessIO(
 				val line = x.split(":( )+")
 				val key = line(0)
 				val value = line(1).stripSuffix(".")
-				val data = "'{\"timestamp\":" + System.currentTimeMillis + ", \"data\": {\"" + key + "\": " + value + "}}'"
+				var json = JSONObject(Map("timestamp" -> System.currentTimeMillis, "data" -> JSONObject(Map(key -> value))))
 				val url = "http://localhost:8080/db/usagestats/vm_stats"
-				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", data, url)
-				println(curlCmd)
-				Process(curlCmd).run
-				})},
+				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", json.toString(), url)
+				Process(curlCmd).run})},
 	_ => ())
 val proc = Process(vmstatCmd).run(io)
-	
