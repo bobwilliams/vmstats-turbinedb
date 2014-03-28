@@ -11,10 +11,10 @@ val io = new ProcessIO(
 			x => {
 				val line = x.split(":( )+")
 				val key = line(0)
-				val value = line(1).stripSuffix(".")
-				var json = JSONObject(Map("timestamp" -> System.currentTimeMillis, "data" -> JSONObject(Map(key -> value))))
+				val value = line(1).stripSuffix(".").toInt
+				var json = JSONObject(Map("timestamp" -> System.currentTimeMillis, "data" -> JSONObject(Map(key -> value)))).toString()
 				val url = "http://localhost:8080/db/usagestats/vm_stats"
-				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", json.toString(), url)
+				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", s"${json}", url)
 				Process(curlCmd).run})},
 	_ => ())
 val proc = Process(vmstatCmd).run(io)
