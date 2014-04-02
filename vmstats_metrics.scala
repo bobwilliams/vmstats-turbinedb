@@ -19,7 +19,6 @@ object VMStatMetrics {
 						event += (key -> value)
 					})
 				val url = "http://localhost:8080/db/usagestats/vm_stats"
-				println(url)
 				var json = JSONObject(Map("timestamp" -> System.currentTimeMillis, "data" -> JSONObject(event.toMap))).toString()
 				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", json, url)
 				Process(curlCmd).run
