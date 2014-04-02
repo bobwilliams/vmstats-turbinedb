@@ -2,6 +2,7 @@ import scala.sys.process._
 import scala.io._
 import scala.util.parsing.json._
 import scala.collection.mutable.{Map => MMap}
+import java.lang.System
 
 object VMStatMetrics {
 	def main(args: Array[String]) {
@@ -21,6 +22,7 @@ object VMStatMetrics {
 				val url = "http://localhost:8080/db/usagestats/vm_stats"
 				var json = JSONObject(Map("timestamp" -> System.currentTimeMillis, "data" -> JSONObject(event.toMap))).toString()
 				val curlCmd = Seq("curl", "-s", "-H", "'Content-Type: application/json'", "-X", "POST", "-d", json, url)
+				println(curlCmd)
 				Process(curlCmd).run
 			},
 			_ => ())

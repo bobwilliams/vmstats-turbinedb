@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.sparcedge.vmstats</string>
+        <key>ProgramArguments</key>
+        <array>
+        	<string>/bin/scala-2.10.3/bin/scala</string>
+            <string>/Users/bob/workspace/vmstats-turbinedb/vmstats_metrics.scala</string>
+        </array>
+        <key>StartInterval</key>
+        <integer>10</integer>
+        <key>KeepAlive</key>
+    	<dict>
+        	<key>SuccessfulExit</key>
+        	<false/>
+    	</dict>
+        <key>StandardOutPath</key>
+        <string>/Users/bob/workspace/vmstats-turbinedb/logs/vmstats.log</string>
+        <key>StandardErrorPath</key>
+        <string>/Users/bob/workspace/vmstats-turbinedb/logs/vmstats.err</string>
+    </dict>
+</plist>
