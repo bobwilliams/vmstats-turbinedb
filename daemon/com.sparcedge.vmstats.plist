@@ -6,7 +6,7 @@
         <string>com.sparcedge.vmstats</string>
         <key>ProgramArguments</key>
         <array>
-        	<string>/bin/scala-2.10.3/bin/scala</string>
+        	<string>/bin/scala-2.11.5/bin/scala</string>
             <string>/Users/bob/workspace/vmstats-turbinedb/vmstats_metrics.scala</string>
         </array>
         <key>StartInterval</key>
